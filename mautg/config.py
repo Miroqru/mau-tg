@@ -7,6 +7,7 @@
 
 from aiogram.client.default import DefaultBotProperties
 from mau.session import SessionManager
+from mauren import Mau
 from pydantic import BaseModel, Field, SecretStr
 from pydantic_settings import BaseSettings
 
@@ -28,6 +29,7 @@ class Config(BaseSettings):
     """
 
     telegram_token: SecretStr = Field()
+    mau_server: str
 
     use_hook: bool
     server_host: str
@@ -48,3 +50,4 @@ class StickerSet(BaseModel):
 default = DefaultBotProperties(parse_mode="HTML")
 sm: SessionManager[MessageJournal] = SessionManager()
 config: Config = Config(_env_file=".env")  # type: ignore
+mau = Mau(config.mau_server)

@@ -9,6 +9,7 @@ dependencies = [
     "aiogram>=3.20.0",
     "fastapi>=0.115.12",
     "mau>=2.3",
+    "mauren",
     "pydantic-settings>=2.9.1",
     "uvicorn>=0.34.2",
 ]
@@ -38,3 +39,4 @@ line-ending = "auto"
 
 [tool.uv.sources]
 mau = { git = "https://github.com/miroqru/mauno" }
+mauren = { git = "https://github.com/miroqru/mauren" }

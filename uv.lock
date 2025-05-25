@@ -283,6 +283,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "mauren"
+version = "0.3.0"
+source = { git = "https://github.com/miroqru/mauren#44dfc4b50c07b1bfa72f0bce525b210b47c0391a" }
+dependencies = [
+    { name = "aiohttp" },
+    { name = "loguru" },
+    { name = "pydantic" },
+]
+
+[[package]]
 name = "mautg"
 version = "2.3"
 source = { virtual = "." }
@@ -290,6 +300,7 @@ dependencies = [
     { name = "aiogram" },
     { name = "fastapi" },
     { name = "mau" },
+    { name = "mauren" },
     { name = "pydantic-settings" },
     { name = "uvicorn" },
 ]
@@ -304,6 +315,7 @@ requires-dist = [
     { name = "aiogram", specifier = ">=3.20.0" },
     { name = "fastapi", specifier = ">=0.115.12" },
     { name = "mau", git = "https://github.com/miroqru/mauno" },
+    { name = "mauren", git = "https://github.com/miroqru/mauren" },
     { name = "pydantic-settings", specifier = ">=2.9.1" },
     { name = "uvicorn", specifier = ">=0.34.2" },
 ]
