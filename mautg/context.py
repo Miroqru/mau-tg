@@ -11,7 +11,6 @@ from aiogram.types import (
     InlineQuery,
     Message,
 )
-
 from mau.game.game import MauGame
 from mau.game.player import Player
 from mau.session import SessionManager

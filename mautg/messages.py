@@ -58,7 +58,7 @@ def game_rules_list(game: MauGame) -> str:
     return f"🪄 Игровые правила\n:{rule_list}" if rule_list != "" else ""
 
 
-def players_list(pm: PlayerManager, reverse: bool, shotgun: bool) -> str:
+def players_list(pm: PlayerManager, reverse: bool) -> str:
     """Список игроков для текущей комнаты.
 
     Отображает порядок хода, список всех игроков.
@@ -68,13 +68,12 @@ def players_list(pm: PlayerManager, reverse: bool, shotgun: bool) -> str:
     reverse_sim = "◀️" if reverse else "▶️"
     res = f"✨ Игроки {reverse_sim}:\n"
     for i, player in enumerate(pm.iter()):
-        shotgun_stat = f" {player.shotgun.cur} / 8 🔫" if shotgun else ""
         name = (
             f"<b>{player.mention}</b>"
             if player == pm.current
             else player.mention
         )
-        res += f"- {name} 🃏{len(player.hand)} {shotgun_stat}\n"
+        res += f"- {name} 🃏{len(player.hand)}\n"
     return res
 
 
@@ -102,7 +101,7 @@ def game_status(game: MauGame) -> str:
             "🍉 Время присоединиться к игре!"
         )
 
-    if game.rules.single_shotgun.status:
+    if game.rules.shotgun.status:
         shotgun_stats = f"🔫 <b>Револьвер</b>: {game.shotgun.cur} / 8"
     else:
         shotgun_stats = ""
@@ -115,7 +114,7 @@ def game_status(game: MauGame) -> str:
         f"🃏 <b>Последняя карта</b>: {_card_info(game.deck.top)}\n"
         f"🦝 <b>Ход</b> {game.player.mention}, прошло {turn_delta}\n"
         f"⏳ <b>Игра идёт</b> {game_delta}\n\n"
-        f"{players_list(game.pm, game.reverse, game.rules.shotgun.status)}\n"
+        f"{players_list(game.pm, game.reverse)}\n"
         f"{game_rules_list(game)}"
         f"📦 <b>карт</b> в колоде: {len(game.deck.cards)} доступно / "
         f"{len(game.deck.used_cards)} использовано.\n{shotgun_stats}"

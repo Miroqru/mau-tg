@@ -8,7 +8,6 @@ from typing import Any, TypeVar
 from aiogram import Bot
 from aiogram.types import InlineKeyboardMarkup, Message
 from loguru import logger
-
 from mau.deck.card import MauCard
 from mau.enums import GameEvents
 from mau.events import BaseEventHandler, Event

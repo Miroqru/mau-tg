@@ -145,7 +145,7 @@ async def next_turn(event: Event, chan: MessageChannel) -> None:
 async def rotate_cards(event: Event, chan: MessageChannel) -> None:
     """Все игрока обменялись картами, возвращает сколько карт у игроков."""
     chan.add("🌀 Обмениваемся <b>картами</b>!")
-    chan.add(messages.players_list(event.game.pm, event.game.reverse, False))
+    chan.add(messages.players_list(event.game.pm, event.game.reverse))
 
 
 @er.event(GameEvents.GAME_STATE)
@@ -153,11 +153,7 @@ async def update_game_state(event: Event, chan: MessageChannel) -> None:
     """При изменении игрового состояния."""
     state = GameState(int(event.data))
     if state == GameState.SHOTGUN:
-        current = (
-            event.game.shotgun.cur
-            if event.game.rules.single_shotgun.status
-            else event.player.shotgun.cur
-        )
+        current = event.game.shotgun.cur
         chan.add(
             "💼 <b>У нас для Вас деловое предложение</b>!\n\n"
             f"Вы можете <b>взять {event.game.take_counter} карт</b> "
