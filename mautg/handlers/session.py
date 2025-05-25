@@ -10,14 +10,14 @@ import random
 from aiogram import F, Router
 from aiogram.filters import Command
 from aiogram.types import CallbackQuery, Message
-
 from mau.enums import CardColor
 from mau.game.game import MauGame
 from mau.game.player import BaseUser
 from mau.session import SessionManager
-from maubot import filters, markups
-from maubot.events.journal import MessageChannel
-from maubot.messages import game_status
+
+from mautg import filters, markups
+from mautg.events.journal import MessageChannel
+from mautg.messages import game_status
 
 router = Router(name="Sessions")
 

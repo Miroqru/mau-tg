@@ -12,13 +12,13 @@ from aiogram.types import (
 from aiogram.types import InlineQueryResultArticle as InlineArticle
 from aiogram.types import InlineQueryResultPhoto as InlinePhoto
 from aiogram.types import InputTextMessageContent as InputText
-
 from mau.deck.behavior import WildTakeBehavior
 from mau.enums import GameState
 from mau.game.game import MauGame
 from mau.game.player import Player
 from mau.game.player_manager import PlayerManager
-from maubot.messages import game_status
+
+from mautg.messages import game_status
 
 # Когда кто-то пробует использовать inline режим бота без активной комнаты
 NO_GAME_QUERY = InlineArticle(

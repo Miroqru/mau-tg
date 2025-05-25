@@ -3,11 +3,11 @@
 Для запуска бота воспользуйтесь командой:
 
 ```sh
-py -m maubot
+py -m mautg
 ```
 """
 
-from maubot.bot import main
+from mautg.bot import main
 
 if __name__ == "__main__":
     main()

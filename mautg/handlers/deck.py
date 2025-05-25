@@ -8,10 +8,10 @@ from aiogram.types import (
     InlineKeyboardMarkup,
     Message,
 )
-
 from mau.deck.presets import CARD_PRESETS, CardGroup, DeckGenerator, DeckPreset
 from mau.game.game import MauGame
-from maubot.filters import GameOwner
+
+from mautg.filters import GameOwner
 
 router = Router(name="Deck editor")
 

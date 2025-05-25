@@ -1,13 +1,13 @@
 """Маршрутизация событий от движка."""
 
 from loguru import logger
-
 from mau.enums import CardColor, GameEvents, GameState
 from mau.events import Event
-from maubot import markups, messages
-from maubot.config import sm
-from maubot.events.journal import EventRouter, MessageChannel
-from maubot.messages import plural_form
+
+from mautg import markups, messages
+from mautg.config import sm
+from mautg.events.journal import EventRouter, MessageChannel
+from mautg.messages import plural_form
 
 er = EventRouter()
 

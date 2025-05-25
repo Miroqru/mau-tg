@@ -6,11 +6,11 @@
 """
 
 from aiogram.client.default import DefaultBotProperties
+from mau.session import SessionManager
 from pydantic import BaseModel, Field, SecretStr
 from pydantic_settings import BaseSettings
 
-from mau.session import SessionManager
-from maubot.events.journal import MessageJournal
+from mautg.events.journal import MessageJournal
 
 
 class Config(BaseSettings):

@@ -6,13 +6,13 @@
 from aiogram import F, Router
 from aiogram.filters import Command
 from aiogram.types import CallbackQuery, Message
-
 from mau.deck.behavior import TakeBehavior, WildTakeBehavior
 from mau.enums import GameState
 from mau.game.game import MauGame
 from mau.game.player import BaseUser, Player
-from maubot import filters
-from maubot.events.journal import MessageChannel
+
+from mautg import filters
+from mautg.events.journal import MessageChannel
 
 router = Router(name="Player")
 

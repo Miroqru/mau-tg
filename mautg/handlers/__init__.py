@@ -3,7 +3,7 @@
 Весь функционал бота был поделён на обработчики для большей гибкости.
 """
 
-from maubot.handlers import (
+from mautg.handlers import (
     deck,
     donut,
     player,

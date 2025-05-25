@@ -9,10 +9,10 @@ from aiogram.types import (
     InlineKeyboardMarkup,
     Message,
 )
-
 from mau.game.game import MauGame
 from mau.game.rules import GameRules
-from maubot.filters import GameOwner
+
+from mautg.filters import GameOwner
 
 router = Router(name="Game rules")
 

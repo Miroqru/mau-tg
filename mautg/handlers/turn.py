@@ -7,13 +7,13 @@ import re
 
 from aiogram import F, Router
 from aiogram.types import CallbackQuery, ChosenInlineResult, InlineQuery
-
 from mau.deck.card import MauCard
 from mau.enums import CardColor, GameState
 from mau.game.game import MauGame
 from mau.game.player import Player
-from maubot import markups
-from maubot.filters import NowPlaying
+
+from mautg import markups
+from mautg.filters import NowPlaying
 
 router = Router(name="Turn")
 

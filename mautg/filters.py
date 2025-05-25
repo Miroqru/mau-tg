@@ -10,8 +10,8 @@ from aiogram.enums import ChatMemberStatus
 from aiogram.filters import Filter
 from aiogram.types import CallbackQuery, Message
 
-from maubot.config import sm
-from maubot.context import get_context
+from mautg.config import sm
+from mautg.context import get_context
 
 NO_JOIN_MESSAGE = (
     "🍓 Для начала надо <b>зайти в комнату</b>.\n"

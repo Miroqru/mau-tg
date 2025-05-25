@@ -26,11 +26,11 @@ from fastapi import APIRouter, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 
-from maubot.config import config, default, sm
-from maubot.context import get_context
-from maubot.events.journal import MessageJournal
-from maubot.events.router import er
-from maubot.handlers import ROUTERS
+from mautg.config import config, default, sm
+from mautg.context import get_context
+from mautg.events.journal import MessageJournal
+from mautg.events.router import er
+from mautg.handlers import ROUTERS
 
 dp = Dispatcher(sm=sm)
 
