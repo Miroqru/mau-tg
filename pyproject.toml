@@ -1,0 +1,34 @@
+[project]
+name = "mautg"
+version = "2.3"
+description = "Play Mau with your friends in Telegram chats!"
+license = "AGPL-3.0-or-later"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiogram>=3.20.0",
+    "fastapi>=0.115.12",
+    "mau>=2.3",
+    "pydantic-settings>=2.9.1",
+    "uvicorn>=0.34.2",
+]
+
+# Ruff linter ----------------------------------------------------------
+
+[tool.ruff]
+line-length = 80
+indent-width = 4
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "D", "N", "PL", "UP", "ANN", "W", "ASYNC"]
+ignore = ["D407", "D107", "D213", "D203"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.uv.sources]
+mau = { git = "https://github.com/miroqru/mauno" }
