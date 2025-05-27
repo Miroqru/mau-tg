@@ -47,6 +47,7 @@ async def start_game(event: Event, chan: MessageChannel) -> None:
     await chan.send_card(event.game.deck.top)
     chan.add("🌳 Да начнётся <b>Новая игра!</b>!")
     chan.add(f"✨ Игру начинает {event.game.player.mention}.")
+    chan.add(f"🎨 Дикий цвет: {event.game.deck.wild_color}")
     chan.add(
         f"{messages.game_rules_list(event.game)}"
         "/close если не хотите чтобы вашей игре помешали.\n"
