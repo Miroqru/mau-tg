@@ -10,7 +10,6 @@ import random
 from aiogram import F, Router
 from aiogram.filters import Command
 from aiogram.types import CallbackQuery, Message
-from mau.enums import CardColor
 from mau.game.game import MauGame
 from mau.game.player import BaseUser
 from mau.session import SessionManager
@@ -155,7 +154,7 @@ async def skip_player(
     # Иногда может быть такое, что пропускается чёрная карта
     # Тогда ей нужно дать какой-нибудь цвет
     if game.deck.top.color == game.deck.wild_color:
-        game.choose_color(CardColor(random.randint(0, 3)))
+        game.choose_color(random.choice(game.deck.colors))
     else:
         game.next_turn()
 
