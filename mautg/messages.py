@@ -55,7 +55,7 @@ def game_rules_list(game: MauGame) -> str:
     for name, status in game.rules.iter_rules():
         if status:
             rule_list += f"- {name}\n"
-    return f"🪄 Игровые правила\n:{rule_list}" if rule_list != "" else ""
+    return f"🪄 Игровые правила:\n{rule_list}" if rule_list != "" else ""
 
 
 def players_list(pm: PlayerManager, reverse: bool) -> str:
