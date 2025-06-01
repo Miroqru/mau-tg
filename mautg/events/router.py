@@ -97,13 +97,10 @@ async def leave_player(event: Event, chan: MessageChannel) -> None:
         return
 
     if event.data == "win":
-        chan.add("👑 закончил(а)!\n")
+        chan.add(f"👑 {event.player.mention} закончил(а)!\n")
     else:
         chan.add(f"👋 {event.player.mention} покидает нас.")
 
-    # Это может бывать выход из игры до её начала
-    if not event.game.started:
-        chan.set_markup(None)
     await chan.send()
 
 
@@ -177,7 +174,7 @@ async def update_game_state(event: Event, chan: MessageChannel) -> None:
         chan.set_markup(markups.color_markup(event.game))
 
     elif state == GameState.TAKE:
-        chan.set_markup(markups.turn_markup(event.game))
+        chan.set_markup(markups.turn_markup(event.game, take_button=False))
 
     else:
         logger.warning("Unprocessed state {}", state)
@@ -193,7 +190,7 @@ async def update_game_state(event: Event, chan: MessageChannel) -> None:
 @er.event(GameEvents.PLAYER_MAU)
 async def say_mau(event: Event, chan: MessageChannel) -> None:
     """Оповещает что у игрока осталась одна карта в руке."""
-    chan.add("\n😺 <b>Mau!</b>")
+    chan.add("😺 <b>Mau!</b>")
 
 
 @er.event(GameEvents.PLAYER_TAKE)

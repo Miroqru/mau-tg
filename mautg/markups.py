@@ -13,7 +13,6 @@ from aiogram.types import InlineQueryResultArticle as InlineArticle
 from aiogram.types import InlineQueryResultPhoto as InlinePhoto
 from aiogram.types import InputTextMessageContent as InputText
 from mau.deck.behavior import WildTakeBehavior
-from mau.enums import GameState
 from mau.game.game import MauGame
 from mau.game.player import Player
 from mau.game.player_manager import PlayerManager
@@ -129,7 +128,9 @@ def lobby_markup(game: MauGame) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 
-def turn_markup(game: MauGame) -> InlineKeyboardMarkup:
+def turn_markup(
+    game: MauGame, take_button: bool = True
+) -> InlineKeyboardMarkup:
     """Клавиатура для хода."""
     inline_keyboard = [
         [
@@ -140,14 +141,13 @@ def turn_markup(game: MauGame) -> InlineKeyboardMarkup:
         ]
     ]
 
-    if game.state == GameState.TAKE:
-        inline_keyboard.append(
-            [InlineKeyboardButton(text="🍓 завершить", callback_data="next")]
-        )
-
-    else:
+    if take_button:
         inline_keyboard.append(
             [InlineKeyboardButton(text="🃏 взять", callback_data="take")]
+        )
+    else:
+        inline_keyboard.append(
+            [InlineKeyboardButton(text="🍓 завершить", callback_data="next")]
         )
 
     if (
