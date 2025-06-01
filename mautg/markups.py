@@ -52,9 +52,9 @@ NEW_GAME_MARKUP = InlineKeyboardMarkup(
 def hand_query(player: Player) -> Iterator[InlinePhoto]:
     """Возвращает основную клавиатуру с игровыми действиями."""
     player_cards = player.cover_cards()
-    for i, card in enumerate(player_cards.cover):
+    for i, card in player_cards.cover:
         yield InlinePhoto(
-            id=f"{card.pack()}:{i}",
+            id=f"{i}",
             photo_url=f"https://mau.miroq.ru/card/next/{card.pack()}/cover",
             thumbnail_url=f"https://mau.miroq.ru/card/next/{card.pack()}/cover",
             photo_width=64,
@@ -62,7 +62,7 @@ def hand_query(player: Player) -> Iterator[InlinePhoto]:
             description=card.pack(),
         )
 
-    for i, card in enumerate(player_cards.uncover):
+    for i, card in player_cards.uncover:
         yield InlinePhoto(
             id=f"status:{i}",
             photo_url=f"https://mau.miroq.ru/card/next/{card.pack()}/uncover",
