@@ -25,12 +25,6 @@ async def start_session(event: Event, chan: MessageChannel) -> None:
     )
 
 
-@er.event(GameEvents.SESSION_END)
-async def end_session(event: Event, chan: MessageChannel) -> None:
-    """Очищает устаревший канал сообщений."""
-    sm._event_handler.remove_channel(event.game.room_id)
-
-
 # Обработка событий игры
 # ======================
 
@@ -62,6 +56,7 @@ async def end_game(event: Event, chan: MessageChannel) -> None:
     chan.set_markup(markups.NEW_GAME_MARKUP)
     await chan.send()
     sm.remove(event.game.room_id)
+    await sm._event_handler.remove_channel(event.game.room_id)
 
 
 @er.event(GameEvents.GAME_JOIN)

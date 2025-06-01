@@ -166,6 +166,6 @@ class MessageJournal(BaseEventHandler):
 
         return channel
 
-    def remove_channel(self, room_id: str) -> None:
+    async def remove_channel(self, room_id: str) -> None:
         """Устанавливает канал сообщений для чата."""
         self.channels.pop(room_id)
