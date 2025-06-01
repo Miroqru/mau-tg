@@ -139,7 +139,7 @@ async def next_turn(event: Event, chan: MessageChannel) -> None:
     await chan.send()
 
 
-@er.event(GameEvents.PLAYER_PUSH)
+@er.event(GameEvents.PLAYER_PUT)
 async def push_card(event: Event, chan: MessageChannel) -> None:
     """Игрок кладёт новую карту на верх колоды."""
     chan.add(f"🎮 Кладу карту {messages.card_info(event.game.deck.top)}")
