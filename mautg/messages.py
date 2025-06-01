@@ -77,7 +77,8 @@ def players_list(pm: PlayerManager, reverse: bool) -> str:
     return res
 
 
-def _card_info(card: MauCard) -> str:
+def card_info(card: MauCard) -> str:
+    """Отображает что за карта перед нами."""
     return f"{card.color.emoji} {card.value} {card.behavior.name}"
 
 
@@ -111,7 +112,7 @@ def game_status(game: MauGame) -> str:
     turn_delta = time_delta(int((now - game.turn_start).total_seconds()))
     return (
         f"☕ <b>Игровая комната</b> {game.owner.name}:\n"
-        f"🃏 <b>Последняя карта</b>: {_card_info(game.deck.top)}\n"
+        f"🃏 <b>Последняя карта</b>: {card_info(game.deck.top)}\n"
         f"🦝 <b>Ход</b> {game.player.mention}, прошло {turn_delta}\n"
         f"⏳ <b>Игра идёт</b> {game_delta}\n\n"
         f"{players_list(game.pm, game.reverse)}\n"

@@ -51,11 +51,13 @@ class MessageChannel:
 
     def __init__(self, room_id: str, bot: Bot) -> None:
         self.room_id = room_id
+        self.bot = bot
+
         self.lobby_message: Message | None = None
         self.room_message: Message | None = None
         self.message_queue: deque[str] = deque(maxlen=5)
-        self.bot = bot
         self.markup: InlineKeyboardMarkup | None = None
+        self.put_card = False
 
     async def send_lobby(
         self, message: str, reply_markup: InlineKeyboardMarkup | None = None
@@ -124,9 +126,10 @@ class MessageChannel:
         """Очищает буфер событий и сбрасывает клавиатуру."""
         self.markup = None
         self.lobby_message = None
-        if self.room_message is not None:
+        if self.room_message is not None and self.put_card:
             await self.room_message.delete()
             self.room_message = None
+            self.put_card = False
 
     def set_markup(self, markup: InlineKeyboardMarkup | None) -> None:
         """Устанавливает клавиатуру для игровых событий."""
