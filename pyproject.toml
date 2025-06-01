@@ -1,6 +1,6 @@
 [project]
 name = "mautg"
-version = "2.3"
+version = "2.4"
 description = "Play Mau with your friends in Telegram chats!"
 license = "AGPL-3.0-or-later"
 readme = "README.md"
