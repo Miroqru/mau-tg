@@ -104,7 +104,7 @@ async def shotgun_call(
         await channel.send()
         if game.player != player:
             game.pm.set_cp(player)
-        game.next_turn()
+        game.end_turn(player)
         game.state = GameState.SHOTGUN
     else:
         if game.player == player:

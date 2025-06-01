@@ -55,9 +55,11 @@ async def process_card_handler(
 
 
 @router.callback_query(F.data == "next", NowPlaying())
-async def call_next(query: CallbackQuery, game: MauGame) -> None:
+async def call_next(
+    query: CallbackQuery, game: MauGame, player: Player
+) -> None:
     """Передаёт ход следующему игроку."""
-    game.next_turn()
+    game.end_turn(player)
 
 
 @router.callback_query(F.data == "take", NowPlaying())
