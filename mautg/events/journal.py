@@ -31,7 +31,10 @@ class EventRouter:
             return
 
         channel = journal.get_channel(event.game.room_id)
-        await handler(event, channel)
+        try:
+            await handler(event, channel)
+        except Exception as e:
+            logger.exception(e)
 
     def event(self, event: GameEvents) -> Callable:
         """Декоратор для добавления новых обработчиков событий."""
