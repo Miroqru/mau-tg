@@ -130,8 +130,9 @@ def end_game_players(pm: PlayerManager) -> str:
     res = "🎉 <b>Игра завершилась</b>!\n"
     for i, winner in enumerate(pm.iter(pm.winners)):
         res += f"{place_medal(i) or f'{i + 1}'}. {winner.name}\n"
+
     losers = sorted(
-        [(p, p.count_cost()) for p in pm.iter(pm.losers)],
+        [(p, pm.player_cost.get(p.user_id, 0)) for p in pm.iter(pm.losers)],
         key=lambda r: r[1],
         reverse=True,
     )
