@@ -105,7 +105,6 @@ async def shotgun_call(
         if game.player != player:
             game.pm.set_cp(player)
         game.end_turn(player)
-        game.state = GameState.SHOTGUN
     else:
         if game.player == player:
             channel.add("😴 На этом игра для вас <b>закончилась</b>.\n")

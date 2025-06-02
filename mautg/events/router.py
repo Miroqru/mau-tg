@@ -153,13 +153,12 @@ async def update_game_state(event: Event, chan: MessageChannel) -> None:
     """При изменении игрового состояния."""
     state = GameState(int(event.data))
     if state == GameState.SHOTGUN:
-        current = event.game.shotgun.cur
         chan.add(
             "💼 <b>У нас для Вас деловое предложение</b>!\n\n"
             f"Вы можете <b>взять {event.game.take_counter} карт</b> "
             "или попробовать <b>выстрелить из револьвера</b>.\n"
             "Если вам повезёт, то карты будет брать следующий игрок.\n"
-            f"🔫 Из револьвера стреляли {current} / 8 раз\n."
+            f"🔫 Из револьвера стреляли {event.game.shotgun.cur} / 8 раз\n."
         )
         chan.set_markup(markups.SHOTGUN_MARKUP)
 
