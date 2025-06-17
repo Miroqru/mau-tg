@@ -129,7 +129,7 @@ async def next_turn(event: Event, chan: MessageChannel) -> None:
     cards = len(event.game.player.hand)
     chan.add(
         f"\n🍰 <b>ход</b>: {event.game.player.mention} "
-        f"(🃏 {cards} {plural_form(cards, ('карту', 'карты', 'карт'))})"
+        f"(🃏 {cards} {plural_form(cards, ('карта', 'карты', 'карт'))})"
     )
     await chan.send()
 
