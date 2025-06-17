@@ -45,6 +45,9 @@ async def process_card_handler(
     result: ChosenInlineResult, game: MauGame, player: Player
 ) -> None:
     """Обрабатывает все выбранные события от бота."""
+    if not result.result_id.isdigit():
+        return
+
     game.process_turn(player, int(result.result_id))
 
 
