@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = ["mypy>=1.15.0"]
+dev = ["mypy>=1.15.0", "pyright>=1.1.405", "ruff>=0.13.0"]
 
 
 # Ruff linter ----------------------------------------------------------
@@ -25,8 +25,21 @@ indent-width = 4
 target-version = "py311"
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "D", "N", "PL", "UP", "ANN", "W", "ASYNC"]
-ignore = ["D407", "D107", "D213", "D203"]
+select = ["ALL"]
+ignore = [
+    "D407",
+    "D107",
+    "D213",
+    "D203",
+    "RUF",
+    "COM",    # trailing commas, controlled by format
+    "EM102",  #  Exception must not use an f-string literal, assign to variable first
+    "TRY003", # Avoid specifying long messages outside the exception class
+    "INP001", # part of an implicit namespace package. Add an `__init__.py`.
+    "FIX",    # Line contains TODO, consider resolving the
+    "TD002",  # Missing author in TODO
+    "TD003",  # Missing issue link for this TODO
+]
 
 [tool.ruff.format]
 quote-style = "double"
