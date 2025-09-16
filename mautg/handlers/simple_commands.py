@@ -47,7 +47,7 @@ async def get_help(message: Message, bot: Bot) -> None:
     """Помогает пользователю начать работать с ботом."""
     if message.chat.type == "private":
         await message.answer(HELP_MESSAGE)
-        return None
+        return
 
     try:
         await message.delete()

@@ -74,9 +74,9 @@ async def create_game(
 async def start_gama(message: Message, game: MauGame) -> None:
     """Запускает игру в комнате."""
     if message.chat.type == "private":
-        return None
+        return
 
-    elif game.started:
+    if game.started:
         await message.answer("👀 Игра уже началась ранее.")
 
     elif len(game.pm) < game.min_players:

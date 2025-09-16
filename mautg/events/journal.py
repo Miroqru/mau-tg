@@ -101,7 +101,7 @@ class MessageChannel:
         По умолчанию журнал очищается при каждом новом ходе игрока.
         """
         if len(self.message_queue) == 0:
-            return None
+            return
 
         if self.room_message is None:
             self.room_message = await self.bot.send_message(

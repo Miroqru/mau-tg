@@ -7,7 +7,6 @@ from aiogram import F, Router
 from aiogram.filters import Command
 from aiogram.types import CallbackQuery, Message
 from mau.deck.behavior import TakeBehavior, WildTakeBehavior
-from mau.enums import GameState
 from mau.game.game import MauGame
 from mau.game.player import BaseUser, Player
 
