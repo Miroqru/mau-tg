@@ -20,19 +20,19 @@ router = Router(name="Deck editor")
 
 
 def get_presets(
-    presets: dict[str, DeckPreset], now_preset: str
+    presets: dict[str, DeckPreset], now_preset: str,
 ) -> InlineKeyboardMarkup:
     """Собирает клавиатуру доступных шаблонов колоды."""
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
-                    text=preset.name, callback_data=f"preset:{name}"
-                )
+                    text=preset.name, callback_data=f"preset:{name}",
+                ),
             ]
             for name, preset in presets.items()
             if name != now_preset
-        ]
+        ],
     )
 
 
@@ -86,7 +86,7 @@ class PresetCallback(CallbackData, prefix="preset"):
 
 @router.callback_query(PresetCallback.filter(), GameOwner())
 async def set_deck_preset(
-    query: CallbackQuery, game: MauGame, callback_data: PresetCallback
+    query: CallbackQuery, game: MauGame, callback_data: PresetCallback,
 ) -> None:
     """Выбирает один из заготовленных шаблонов колоды для игры."""
     await query.answer()

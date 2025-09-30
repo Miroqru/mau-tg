@@ -60,7 +60,7 @@ class MessageChannel:
         self.put_card = False
 
     async def send_lobby(
-        self, message: str, reply_markup: InlineKeyboardMarkup | None = None
+        self, message: str, reply_markup: InlineKeyboardMarkup | None = None,
     ) -> None:
         """Отправляет сообщение-лобби о начале новой игры."""
         if self.lobby_message is None:
@@ -127,9 +127,9 @@ class MessageChannel:
         self.markup = None
         self.lobby_message = None
         if self.room_message is not None and self.put_card:
+            self.put_card = False
             await self.room_message.delete()
             self.room_message = None
-            self.put_card = False
 
     def set_markup(self, markup: InlineKeyboardMarkup | None) -> None:
         """Устанавливает клавиатуру для игровых событий."""

@@ -23,7 +23,7 @@ router = Router(name="Turn")
 
 @router.inline_query()
 async def inline_handler(
-    query: InlineQuery, game: MauGame | None, player: Player | None
+    query: InlineQuery, game: MauGame | None, player: Player | None,
 ) -> None:
     """Обработчик inline запросов. Предоставляет клавиатуру со всеми картами."""
     if game is None or player is None or query.from_user is None:
@@ -42,7 +42,7 @@ async def inline_handler(
 
 @router.chosen_inline_result(NowPlaying())
 async def process_card_handler(
-    result: ChosenInlineResult, game: MauGame, player: Player
+    result: ChosenInlineResult, game: MauGame, player: Player,
 ) -> None:
     """Обрабатывает все выбранные события от бота."""
     if not result.result_id.isdigit():
@@ -56,7 +56,7 @@ async def process_card_handler(
 
 @router.callback_query(F.data == "next", NowPlaying())
 async def call_next(
-    query: CallbackQuery, game: MauGame, player: Player
+    query: CallbackQuery, game: MauGame, player: Player,
 ) -> None:
     """Передаёт ход следующему игроку."""
     game.end_turn(player)
@@ -76,7 +76,7 @@ async def call_bluff(query: CallbackQuery, player: Player) -> None:
 
 @router.callback_query(F.data.regexp(r"color:(\d)").as_("color"), NowPlaying())
 async def choose_color_call(
-    query: CallbackQuery, game: MauGame, color: re.Match[str]
+    query: CallbackQuery, game: MauGame, color: re.Match[str],
 ) -> None:
     """Игрок выбирает цвет по нажатию на кнопку."""
     card_color = CardColor(int(color.groups()[0]))
@@ -85,10 +85,10 @@ async def choose_color_call(
 
 
 @router.callback_query(
-    F.data.regexp(r"select_player:(\d+)").as_("user_id"), NowPlaying()
+    F.data.regexp(r"select_player:(\d+)").as_("user_id"), NowPlaying(),
 )
 async def select_player_call(
-    query: CallbackQuery, game: MauGame, player: Player, user_id: re.Match[str]
+    query: CallbackQuery, game: MauGame, player: Player, user_id: re.Match[str],
 ) -> None:
     """Действие при выборе игрока для обмена картами."""
     other_player = game.pm.get(user_id.groups()[0])

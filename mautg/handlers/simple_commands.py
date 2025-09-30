@@ -54,7 +54,7 @@ async def get_help(message: Message, bot: Bot) -> None:
     except Exception as e:
         logger.warning("Unable to delete message: {}", e)
         await message.answer(
-            "👀 Пожалуйста выдайте мне права удалять сообщения в чате."
+            "👀 Пожалуйста выдайте мне права удалять сообщения в чате.",
         )
 
     try:

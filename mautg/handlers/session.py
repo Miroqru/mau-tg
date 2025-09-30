@@ -46,7 +46,7 @@ async def create_game(
     if game is not None:
         if game.started:
             await message.answer(
-                "🔑 Игра уже начата. Для начала её нужно завершить. (/stop)"
+                "🔑 Игра уже начата. Для начала её нужно завершить. (/stop)",
             )
         else:
             channel.lobby_message = None
@@ -102,7 +102,7 @@ async def open_gama(message: Message, game: MauGame) -> None:
     """Открывает игровую комнату для всех участников чата."""
     game.open = True
     await message.answer(
-        "🍰 Комната <b>открыта</b>!\n любой участник может зайти (/join)."
+        "🍰 Комната <b>открыта</b>!\n любой участник может зайти (/join).",
     )
 
 
@@ -111,13 +111,13 @@ async def close_gama(message: Message, game: MauGame) -> None:
     """Закрывает игровую комнату для всех участников чата."""
     game.open = False
     await message.answer(
-        "🔒 Комната <b>закрыта</b>.\nНикто не помешает вам доиграть."
+        "🔒 Комната <b>закрыта</b>.\nНикто не помешает вам доиграть.",
     )
 
 
 @router.message(Command("kick"), filters.GameOwner())
 async def kick_player(
-    message: Message, game: MauGame, channel: MessageChannel
+    message: Message, game: MauGame, channel: MessageChannel,
 ) -> None:
     """Выкидывает участника из комнаты."""
     if (
@@ -125,7 +125,7 @@ async def kick_player(
         or message.reply_to_message.from_user is None
     ):
         raise ValueError(
-            "🍷 Перешлите сообщение негодника, которого нужно исключить."
+            "🍷 Перешлите сообщение негодника, которого нужно исключить.",
         )
 
     kicked_user = message.reply_to_message.from_user
@@ -133,7 +133,7 @@ async def kick_player(
     if kick_player is not None:
         channel.add(
             f"🧹 {game.owner.name} выгнал "
-            f"{kick_player.mention} из игры за плохое поведение.\n"
+            f"{kick_player.mention} из игры за плохое поведение.\n",
         )
         game.leave_player(kick_player)
         await channel.send()
@@ -141,7 +141,7 @@ async def kick_player(
 
 @router.message(Command("skip"), filters.GameOwner())
 async def skip_player(
-    message: Message, game: MauGame, channel: MessageChannel
+    message: Message, game: MauGame, channel: MessageChannel,
 ) -> None:
     """пропускает участника за долгое бездействие."""
     game.take_counter += 1
@@ -149,7 +149,7 @@ async def skip_player(
     skip_player = game.player
     channel.add(
         f"☕ {skip_player.mention} потерял свои ку.. карты.\n"
-        "Мы их нашли и дали игроку ещё немного карт от нас.\n"
+        "Мы их нашли и дали игроку ещё немного карт от нас.\n",
     )
     # Иногда может быть такое, что пропускается чёрная карта
     # Тогда ей нужно дать какой-нибудь цвет
@@ -161,7 +161,7 @@ async def skip_player(
 
 @router.callback_query(F.data == "new_game")
 async def create_game_call(
-    query: CallbackQuery, sm: SessionManager, game: MauGame | None
+    query: CallbackQuery, sm: SessionManager, game: MauGame | None,
 ) -> None:
     """Создаёт новую комнату."""
     if query.message is None or query.from_user is None:

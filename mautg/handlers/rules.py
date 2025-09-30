@@ -32,10 +32,10 @@ def rules_markup(game_rules: GameRules) -> InlineKeyboardMarkup:
                 InlineKeyboardButton(
                     text=f"{'🌟' if rule[1] else ''}{rule[0]}",
                     callback_data=f"rule:{i}",
-                )
+                ),
             ]
             for i, rule in enumerate(game_rules.iter_rules())
-        ]
+        ],
     )
 
 
@@ -50,7 +50,7 @@ async def get_rules_call(query: CallbackQuery, game: MauGame) -> None:
     """Отображает настройки для текущей комнаты."""
     if isinstance(query.message, Message):
         await query.message.answer(
-            ROOM_SETTINGS, reply_markup=rules_markup(game.rules)
+            ROOM_SETTINGS, reply_markup=rules_markup(game.rules),
         )
     await query.answer()
 
@@ -63,12 +63,12 @@ class RulesCallback(CallbackData, prefix="rule"):
 
 @router.callback_query(RulesCallback.filter(), GameOwner())
 async def edit_room_rules_call(
-    query: CallbackQuery, callback_data: RulesCallback, game: MauGame
+    query: CallbackQuery, callback_data: RulesCallback, game: MauGame,
 ) -> None:
     """Изменяет настройки для текущей комнаты."""
     game.rules.toggle(callback_data.index)
     if isinstance(query.message, Message):
         await query.message.edit_text(
-            ROOM_SETTINGS, reply_markup=rules_markup(game.rules)
+            ROOM_SETTINGS, reply_markup=rules_markup(game.rules),
         )
     await query.answer()

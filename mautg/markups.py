@@ -28,7 +28,7 @@ NO_GAME_QUERY = InlineArticle(
             "☕ Сейчас никто не играет.\n\n"
             "Используйте /game для создания новой комнаты.\n"
             "А после воспользуйтесь /join чтобы присоединиться к комнате. "
-        )
+        ),
     ),
 )
 
@@ -38,14 +38,14 @@ SHOTGUN_MARKUP = InlineKeyboardMarkup(
         [
             InlineKeyboardButton(text="Взять 🃏", callback_data="shot_take"),
             InlineKeyboardButton(text="🔫 Выстрелить", callback_data="shot"),
-        ]
-    ]
+        ],
+    ],
 )
 
 NEW_GAME_MARKUP = InlineKeyboardMarkup(
     inline_keyboard=[
-        [InlineKeyboardButton(text="🍪 Новая игра", callback_data="new_game")]
-    ]
+        [InlineKeyboardButton(text="🍪 Новая игра", callback_data="new_game")],
+    ],
 )
 
 
@@ -90,14 +90,14 @@ def select_player(pm: PlayerManager, skip_button: bool) -> InlineKeyboardMarkup:
             InlineKeyboardButton(
                 text=f"{pl.name} ({len(pl.hand)} 🃏)",
                 callback_data=f"select_player:{pl.user_id}",
-            )
+            ),
         ]
         for i, pl in pm.iter_others()
     ]
 
     if skip_button:
         res.append(
-            [InlineKeyboardButton(text="🍷 Пропустить", callback_data="next")]
+            [InlineKeyboardButton(text="🍷 Пропустить", callback_data="next")],
         )
 
     return InlineKeyboardMarkup(inline_keyboard=res)
@@ -121,15 +121,15 @@ def lobby_markup(game: MauGame) -> InlineKeyboardMarkup:
     if len(game.pm) >= game.min_players:
         buttons[0].append(
             InlineKeyboardButton(
-                text="🎮 Начать игру", callback_data="start_game"
-            )
+                text="🎮 Начать игру", callback_data="start_game",
+            ),
         )
 
     return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 
 def turn_markup(
-    game: MauGame, take_button: bool = True
+    game: MauGame, take_button: bool = True,
 ) -> InlineKeyboardMarkup:
     """Клавиатура для хода."""
     inline_keyboard = [
@@ -137,17 +137,17 @@ def turn_markup(
             InlineKeyboardButton(
                 text="🎮 Разыграть 🃏",
                 switch_inline_query_current_chat="",
-            )
-        ]
+            ),
+        ],
     ]
 
     if take_button:
         inline_keyboard.append(
-            [InlineKeyboardButton(text="🃏 взять", callback_data="take")]
+            [InlineKeyboardButton(text="🃏 взять", callback_data="take")],
         )
     else:
         inline_keyboard.append(
-            [InlineKeyboardButton(text="🍓 завершить", callback_data="next")]
+            [InlineKeyboardButton(text="🍓 завершить", callback_data="next")],
         )
 
     if (
@@ -155,7 +155,7 @@ def turn_markup(
         and game.take_counter
     ):
         inline_keyboard[-1].append(
-            InlineKeyboardButton(text="🍷 блефуешь", callback_data="bluff")
+            InlineKeyboardButton(text="🍷 блефуешь", callback_data="bluff"),
         )
 
     return InlineKeyboardMarkup(inline_keyboard=inline_keyboard)
@@ -168,15 +168,15 @@ def color_markup(game: MauGame) -> InlineKeyboardMarkup:
         if c.value % 4 == 0:
             inline_keyboard.append([])
         inline_keyboard[-1].append(
-            InlineKeyboardButton(text=c.emoji, callback_data=f"color:{c.value}")
+            InlineKeyboardButton(text=c.emoji, callback_data=f"color:{c.value}"),
         )
 
     inline_keyboard.append(
         [
             InlineKeyboardButton(
-                text="🃏 Ваши карты", switch_inline_query_current_chat=""
-            )
-        ]
+                text="🃏 Ваши карты", switch_inline_query_current_chat="",
+            ),
+        ],
     )
 
     return InlineKeyboardMarkup(inline_keyboard=inline_keyboard)

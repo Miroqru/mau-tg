@@ -33,7 +33,7 @@ async def join_player(message: Message, game: MauGame) -> None:
         await message.answer(
             "🔒 К сожалению данная комната <b>закрыта</b>.\n"
             "Вы можете попросить владельца комнаты открыть"
-            "комнату или дождаться окончания игра."
+            "комнату или дождаться окончания игра.",
         )
 
 
@@ -64,7 +64,7 @@ async def join_callback(query: CallbackQuery, game: MauGame) -> None:
 
 @router.callback_query(F.data == "shot_take", filters.NowPlaying())
 async def take_cards_call(
-    query: CallbackQuery, game: MauGame, player: Player, channel: MessageChannel
+    query: CallbackQuery, game: MauGame, player: Player, channel: MessageChannel,
 ) -> None:
     """Игрок выбирает взять карты."""
     if game.player == player:
@@ -90,7 +90,7 @@ async def take_cards_call(
 
 @router.callback_query(F.data == "shot", filters.NowPlaying())
 async def shotgun_call(
-    query: CallbackQuery, game: MauGame, player: Player, channel: MessageChannel
+    query: CallbackQuery, game: MauGame, player: Player, channel: MessageChannel,
 ) -> None:
     """Игрок выбирает взять карты."""
     res = player.shot()
@@ -98,7 +98,7 @@ async def shotgun_call(
         game.take_counter = round(game.take_counter * 1.5)
         channel.add(
             "✨ На сей раз <b>вам повезло</b> и револьвер не выстрелил.\n"
-            f"🃏 Следующий игрок берёт <b>{game.take_counter} карт</b>!\n"
+            f"🃏 Следующий игрок берёт <b>{game.take_counter} карт</b>!\n",
         )
         await channel.send()
         if game.player != player:

@@ -58,7 +58,7 @@ async def game_middleware(
 ) -> Callable[[Update, dict[str, Any]], Awaitable[Any]]:
     """Предоставляет экземпляр игры в обработчики сообщений."""
     if isinstance(
-        event, CallbackQuery | ChosenInlineResult | InlineQuery | Message
+        event, CallbackQuery | ChosenInlineResult | InlineQuery | Message,
     ):
         context = get_context(sm, event)
         data["game"] = context.game
@@ -90,7 +90,7 @@ async def catch_errors(event: ErrorEvent) -> None:
         return
 
     await message.answer(
-        f"👀 <b>Что-то пошло не по плану</b>...\n{event.exception}"
+        f"👀 <b>Что-то пошло не по плану</b>...\n{event.exception}",
     )
 
 
@@ -102,7 +102,7 @@ async def on_startup(bot: Bot) -> None:
     """Настройка webhook при запуске."""
     logger.info("Set hook to: {}", config.hook_url)
     await bot.set_webhook(
-        f"{config.hook_url}{config.hook_root}", secret_token=config.hook_secret
+        f"{config.hook_url}{config.hook_root}", secret_token=config.hook_secret,
     )
 
 
@@ -137,7 +137,7 @@ router = APIRouter()
 async def process_hook(
     update: Update,
     secret: Annotated[
-        str, Header(alias="x-telegram-bot-api-secret-token")
+        str, Header(alias="x-telegram-bot-api-secret-token"),
     ] = "",
 ) -> dict:
     """Обрабатывает приходящие события для бота."""
@@ -145,7 +145,7 @@ async def process_hook(
         raise HTTPException(401, "Unauthorized")
 
     result: TelegramMethod[Any] | None = await dp.feed_webhook_update(
-        dp.workflow_data["bot"], update
+        dp.workflow_data["bot"], update,
     )
 
     if not result:

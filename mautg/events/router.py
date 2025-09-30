@@ -43,7 +43,7 @@ async def start_game(event: Event, chan: MessageChannel) -> None:
     chan.add(f"✨ Игру начинает {event.game.player.mention}.")
     chan.add(
         f"{messages.game_rules_list(event.game)}"
-        "/close если не хотите чтобы вашей игре помешали.\n"
+        "/close если не хотите чтобы вашей игре помешали.\n",
     )
     chan.add(f"🎨 Дикий цвет: {event.game.deck.wild_color.emoji}")
     await chan.send()
@@ -117,7 +117,7 @@ async def twist_hand(event: Event, chan: MessageChannel) -> None:
     chan.add(
         f"🤝 {event.player.name} ({len(other_player.hand)} 🃏) "
         f"и {other_player.mention} ({len(event.player.hand)} 🃏) "
-        "обменялись картами.\n"
+        "обменялись картами.\n",
     )
 
 
@@ -129,7 +129,7 @@ async def next_turn(event: Event, chan: MessageChannel) -> None:
     cards = len(event.game.player.hand)
     chan.add(
         f"\n🍰 <b>ход</b>: {event.game.player.mention} "
-        f"(🃏 {cards} {plural_form(cards, ('карта', 'карты', 'карт'))})"
+        f"(🃏 {cards} {plural_form(cards, ('карта', 'карты', 'карт'))})",
     )
     await chan.send()
 
@@ -158,7 +158,7 @@ async def update_game_state(event: Event, chan: MessageChannel) -> None:
             f"Вы можете <b>взять {event.game.take_counter} карт</b> "
             "или попробовать <b>выстрелить из револьвера</b>.\n"
             "Если вам повезёт, то карты будет брать следующий игрок.\n"
-            f"🔫 Из револьвера стреляли {event.game.shotgun.cur} / 8 раз\n."
+            f"🔫 Из револьвера стреляли {event.game.shotgun.cur} / 8 раз\n.",
         )
         chan.set_markup(markups.SHOTGUN_MARKUP)
 
@@ -166,8 +166,9 @@ async def update_game_state(event: Event, chan: MessageChannel) -> None:
         chan.add("✨ С кем бы обменяться картами ..")
         chan.set_markup(
             markups.select_player(
-                event.game.pm, event.game.rules.twist_hand_pass.status
-            )
+                event.game.pm,
+                event.game.rules.twist_hand_pass.status,
+            ),
         )
 
     elif state == GameState.CHOOSE_COLOR:
@@ -203,12 +204,12 @@ async def player_take_cards(event: Event, chan: MessageChannel) -> None:
     if event.player == event.game.player:
         chan.add(
             f"🃏 Беру {event.data} "
-            f"{plural_form(int(event.data), ('карту', 'карты', 'карт'))}"
+            f"{plural_form(int(event.data), ('карту', 'карты', 'карт'))}",
         )
     else:
         chan.add(
             f"🃏 {event.player.mention} Берёт {event.data} "
-            f"{plural_form(int(event.data), ('карту', 'карты', 'карт'))}"
+            f"{plural_form(int(event.data), ('карту', 'карты', 'карт'))}",
         )
 
     await chan.send()

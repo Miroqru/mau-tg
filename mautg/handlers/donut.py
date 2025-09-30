@@ -48,7 +48,7 @@ def _write_donuts(donut_path: Path, donuts: DonutInfo) -> None:
 def _donut_leaders(donut_info: DonutInfo) -> str:
     res = ""
     for i, d in enumerate(
-        sorted(donut_info.donuts.values(), key=lambda d: d.amount, reverse=True)
+        sorted(donut_info.donuts.values(), key=lambda d: d.amount, reverse=True),
     ):
         res += f"{i + 1}. {d.name}: {d.amount}🌟"
 
@@ -107,5 +107,5 @@ async def finish_payment(message: Message, bot: Bot) -> None:
 
     await message.answer(
         "❤️ Благодарим вас за поддержку Mau!\n"
-        "Будем и дальше радовать вас новыми обновлениями. ✨"
+        "Будем и дальше радовать вас новыми обновлениями. ✨",
     )
